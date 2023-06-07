@@ -10,12 +10,12 @@ const UserProfile = ({img,logout}) => {
                 <Menu.Button>
                     <img className='w-8 h-8 rounded-full object-cover' src={img} alt="" />
                 </Menu.Button>
-                <Menu.Items className='shadow-md shadow-slate-600 mt-4 absolute  z-50 flex flex-col bg-white px-2 w-[100px] py-4 right-10'>
+                <Menu.Items className='shadow-md shadow-slate-600 mt-4 absolute  z-50 flex flex-col bg-white px-4 w-[200px] py-4 right-10 '>
                     hello
 
 
 
-                    <button className='myBtn px-3 py-2 rounded-sm bg-orange-600' onClick={logout}>
+                    <button className='myBtn px-3 py-2 my-2 rounded-sm bg-orange-600' onClick={logout}>
                         Log Out
                     </button>
 

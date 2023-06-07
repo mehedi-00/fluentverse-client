@@ -38,7 +38,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                        user? <UserProfile img={user?.photoURL} logOut={logOut}/>:
+                        user? <UserProfile img={user?.photoURL} logout={logOut}/>:
                         <Link to='/login'>Login</Link>
                     }
                 </div>
