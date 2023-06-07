@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivetRoute from "./PrivetRoute";
 import DashBoard from "../layouts/DashBoard";
+import ManageUsers from "../pages/DashBoard/ManageUsers";
 
 
 
@@ -22,17 +23,23 @@ export const router = createBrowserRouter([
             {
                 path: '/classes',
                 element: <PrivetRoute><p>Classes</p></PrivetRoute>
-            },{
+            }, {
                 path: 'login',
-                element: <Login/>
-            },{
+                element: <Login />
+            }, {
                 path: 'register',
-                element: <Register/>
+                element: <Register />
             }
         ]
     },
     {
         path: 'dashboard',
-        element: <DashBoard/>
+        element: <PrivetRoute><DashBoard /></PrivetRoute>,
+        children:[
+            {
+                path: '/dashboard/manage-users',
+                element: <ManageUsers/>
+            }
+        ]
     }
 ]);
