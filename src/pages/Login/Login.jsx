@@ -1,16 +1,37 @@
 import { useState } from 'react';
 import { FaEye, FaRegEyeSlash } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
+import { useForm } from 'react-hook-form';
 
 const Login = () => {
+    const { signInEmailPassword } = useAuth();
+    const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
     };
-    const handleSubmit = e => {
-        e.preventDefault();
-        console.log(e.target)
+
+    const onSubmit = data => {
+        console.log(data);
+        setError('')
+        signInEmailPassword(data.email, data.password)
+            .then(result => {
+                const createdUser = result.user;
+                console.log(createdUser);
+                reset();
+                return navigate(from, { replace: true });
+            })
+            .catch(error => {
+
+                setError(error.message);
+            });
     };
+
     return (
 
         <div className="relative py-16 bg-gradient-to-br from-sky-50 to-gray-200">
@@ -18,30 +39,37 @@ const Login = () => {
                 <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
                     <div className="rounded-xl bg-white shadow-xl">
                         <div className="p-6 sm:p-16">
-                            <div className="space-y-4">
+                            <div className="space-y-4"> 
+                            {
+                                error&& <span className='text-red-500'>
+                                    {error}
+                                </span>
+                            }
                                 <img src="https://tailus.io/sources/blocks/social/preview/images/icon.svg" loading="lazy" className="w-10" alt="tailus logo" />
                                 <h2 className="mb-8 text-2xl text-cyan-900 font-bold">Sign in to unlock the <br /> best of Tailus.</h2>
                             </div>
                             <div className="space-y-4">
-                                <form className="mt-8" onSubmit={handleSubmit}>
+                                <form className="mt-8" onSubmit={handleSubmit(onSubmit)}>
                                     <div className="mx-auto max-w-lg">
                                         <div className="py-2">
-                                            <span className="px-1 text-sm text-gray-600">Username</span>
-                                            <input placeholder="" type="text"
+                                            <span className="px-1 text-sm text-gray-600">Email</span>
+                                            <input placeholder="" type="email" {...register("email", { required: true })}
                                                 className="text-md block px-3 py-2  rounded-lg w-full 
                 bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"/>
+                                            {errors.email && <span className='text-red-600'>This field is required</span>}
                                         </div>
                                         <div className="py-2" >
                                             <span className="px-1 text-sm text-gray-600">Password</span>
                                             <div className="relative">
-                                               
-                                                <input type={showPassword ? 'text' : 'password'} className="text-md block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none" />
+
+                                                <input type={showPassword ? 'text' : 'password'} {...register("password", { required: true })} className="text-md block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none" />
                                                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
-                                                    <button onClick={handleShowPassword}>
-                                                      {showPassword?  <FaRegEyeSlash/>: <FaEye />}
-                                                    </button>
+                                                    <span className='cursor-pointer' onClick={handleShowPassword}>
+                                                        {showPassword ? <FaRegEyeSlash /> : <FaEye />}
+                                                    </span>
                                                 </div>
                                             </div>
+                                            {errors.password && <span className='text-red-600'>This field is required</span>}
                                         </div>
 
 

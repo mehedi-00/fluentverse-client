@@ -1,5 +1,5 @@
 import { useAuth } from "../hooks/useAuth";
-import { Navigate, useLocation } from "react-router";
+import { Navigate, useLocation } from "react-router-dom";
 const PrivetRoute = ({ children }) => {
   const { user, loader } = useAuth();
   const location = useLocation();
