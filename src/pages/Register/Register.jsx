@@ -3,22 +3,45 @@ import { FaEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useAuth } from '../../hooks/useAuth';
+import { addUser } from '../../api/userApi';
+
+
 const Register = () => {
     const { createUser, updateUserProfile } = useAuth();
+    const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const onSubmit = data => {
         console.log(data);
         createUser(data.email, data.password)
-            .then(res => {
-                const loggedUser = res.user;
-                console.log(loggedUser)
-                updateUserProfile(data.name, data.photoURL);
-                reset();
-                navigate('/')
+            .then(result => {
+                const createdUser = result.user;
+                console.log(createdUser);
+
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        addUser(data.name, data.email, data.photoURL)
+                            .then(data => {
+                                console.log(data.data);
+                                if (data.data.insertedId) {
+                                    reset();
+
+                                    navigate("/");
+                                }
+                            }
+                            );
+
+                    })
+                    .catch((error) => console.log(error));
+            })
+            .catch(error => {
+                const errorMessage = error.errorMessage;
+                console.log(errorMessage);
+
             });
     };
-    const [showPassword, setShowPassword] = useState(false);
+
+
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
 

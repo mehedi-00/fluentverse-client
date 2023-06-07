@@ -4,8 +4,9 @@ import UserProfile from './UserProfile';
 import { Link } from 'react-router-dom';
 import { Menu } from '@headlessui/react';
 import { BiAlignLeft } from "react-icons/bi";
+import { useAuth } from '../../../hooks/useAuth';
 const Navbar = () => {
-    const user = false;
+    const {user,logOut} = useAuth();
     const menuItem = <>
         <li> <Link to='/'>Home</Link> </li>
         <li> <Link to='/'>Instructors</Link> </li>
@@ -37,7 +38,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                        user? <UserProfile />:
+                        user? <UserProfile img={user?.photoURL} logOut={logOut}/>:
                         <Link to='/login'>Login</Link>
                     }
                 </div>
