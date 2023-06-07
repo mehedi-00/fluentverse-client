@@ -1,13 +1,27 @@
 import { useState } from 'react';
 import { FaEye, FaRegEyeSlash } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { useAuth } from '../../hooks/useAuth';
 const Register = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const { createUser, updateUserProfile } = useAuth();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const navigate = useNavigate()
+    const onSubmit = data => {
+        console.log(data);
+        createUser(data.email, data.password)
+            .then(res => {
+                const loggedUser = res.user;
+                console.log(loggedUser)
+                updateUserProfile(data.name, data.photoURL);
+                reset();
+                navigate('/')
+            });
+    };
     const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
+
     };
 
     return (
@@ -16,7 +30,7 @@ const Register = () => {
                 <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
                     <div className="rounded-xl bg-white shadow-xl">
                         <div className="p-3 sm:p-16">
-                           
+
                             <div className="space-y-4">
                                 <form className="mt-8" onSubmit={handleSubmit(onSubmit)}>
                                     <div className="mx-auto max-w-lg">
@@ -37,16 +51,18 @@ const Register = () => {
                                             <span className="px-1 text-sm text-gray-600">Photo URL</span>
                                             <input placeholder="" type="text" {...register("photoURL", { required: true })} className="text-md block px-3 py-2  rounded-lg w-full 
             bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"/>
-            {errors.photoURL && <span className='text-red-600'>This field is required</span>}
+                                            {errors.photoURL && <span className='text-red-600'>This field is required</span>}
                                         </div>
                                         <div className="py-2" >
                                             <span className="px-1 text-sm text-gray-600">Password</span>
                                             <div className="relative">
 
-                                                <input type={showPassword ? 'text' : 'password'}  {...register("password", { required: true, minLength: 6,
-pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/, })} className="text-md block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none" />
-                                               
-                                               
+                                                <input type={showPassword ? 'text' : 'password'}  {...register("password", {
+                                                    required: true, minLength: 6,
+                                                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                                                })} className="text-md block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none" />
+
+
                                                 <div className="absolute inset-y-5  right-0 pr-3 flex items-center text-sm leading-5">
                                                     <span className='cursor-pointer' onClick={handleShowPassword}>
                                                         {showPassword ? <FaRegEyeSlash /> : <FaEye />}
