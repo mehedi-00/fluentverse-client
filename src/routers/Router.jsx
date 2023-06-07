@@ -6,6 +6,7 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivetRoute from "./PrivetRoute";
+import DashBoard from "../layouts/DashBoard";
 
 
 
@@ -30,4 +31,8 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: 'dashboard',
+        element: <DashBoard/>
+    }
 ]);
