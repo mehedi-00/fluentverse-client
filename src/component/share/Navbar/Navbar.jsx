@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Menu } from '@headlessui/react';
 import { BiAlignLeft } from "react-icons/bi";
 const Navbar = () => {
-
+    const user = false;
     const menuItem = <>
         <li> <Link to='/'>Home</Link> </li>
         <li> <Link to='/'>Instructors</Link> </li>
@@ -18,12 +18,12 @@ const Navbar = () => {
                 <div className="navbar-start">
                     <Menu>
                         <Menu.Button className='lg:hidden w-8 h-8'>
-                           <BiAlignLeft/>
+                            <BiAlignLeft />
                         </Menu.Button>
                         <Menu.Items className='shadow-md shadow-slate-600 list-none absolute flex flex-col bg-white px-2 w-[200px] py-4 top-12 left-10'>
-                        {
-                            menuItem
-                        }
+                            {
+                                menuItem
+                            }
                         </Menu.Items>
                     </Menu>
                     <Logo />
@@ -36,7 +36,10 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <UserProfile />
+                    {
+                        user? <UserProfile />:
+                        <Link to='/login'>Login</Link>
+                    }
                 </div>
             </div>
         </Container>

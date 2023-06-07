@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+    
+    color: white !important;
+}
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+   
+    color: white;
+}
