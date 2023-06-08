@@ -1,12 +1,12 @@
-import axios from "axios";
 import useUser from "../../hooks/useUser";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 const ManageUsers = () => {
     const [refetch, allUser] = useUser();
-
-    const handleMakeAdmin= user=>{
-        axios.patch(`http://localhost:5000/user/admin/${user._id}`)
+    const [axiosSecure] = useAxiosSecure()
+    const handleMakeAdmin= (user,role)=>{
+        axiosSecure.patch(`/user/admin/${user._id}/?role=${role}`)
         .then(res=> {
             if(res.data.modifiedCount >0){
                 refetch()
@@ -33,7 +33,7 @@ const ManageUsers = () => {
                             </thead>
                             <tbody>
                                 {
-                                    allUser.map((item, index) => <tr key={item._id} className="bg-gray-800">
+                                    allUser.map((item, index) => <tr key={item._id} className="bg-gray-200">
                                         <th>
                                             {
                                                 ++index
@@ -65,8 +65,8 @@ const ManageUsers = () => {
                                             </span>
                                         </td>
                                         <td className="p-3 ">
-                                            <button  className="btn btn-sm btn-primary mx-2">Make instructor</button>
-                                            <button onClick={()=>handleMakeAdmin(item)} className="btn btn-sm btn-primary">Make Admin</button>
+                                            <button disabled={item.role === 'admin' || item.role === 'instructor'} onClick={()=>handleMakeAdmin(item,'instructor')}  className="btn btn-sm btn-primary mx-2">Make instructor</button>
+                                            <button disabled={item.role === 'admin' || item.role === 'instructor'}  onClick={()=>handleMakeAdmin(item,'admin')} className="btn btn-sm btn-primary">Make Admin</button>
                                         </td>
                                     </tr>)
                                 }
