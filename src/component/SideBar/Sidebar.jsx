@@ -6,7 +6,6 @@ import useUserRole from '../../hooks/useUserRole';
 const Sidebar = () => {
     
     const [userLoaditng, userRole] = useUserRole();
-    console.log(userRole)
     return (
         <div className="menu p-4 w-38 h-full bg-indigo-400 ">
             <Link to='/dashboard' className='text-3xl font-bold' >Fluent Verse</Link>

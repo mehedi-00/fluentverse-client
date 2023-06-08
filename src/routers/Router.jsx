@@ -8,6 +8,7 @@ import Register from "../pages/Register/Register";
 import PrivetRoute from "./PrivetRoute";
 import DashBoard from "../layouts/DashBoard";
 import ManageUsers from "../pages/DashBoard/ManageUsers";
+import AdminRoute from "./AdminRoute";
 
 
 
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
         children:[
             {
                 path: '/dashboard/manage-users',
-                element: <ManageUsers/>
+                element: <AdminRoute><ManageUsers/></AdminRoute>
             }
         ]
     }
