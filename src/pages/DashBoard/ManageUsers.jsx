@@ -1,10 +1,19 @@
+import axios from "axios";
 import useUser from "../../hooks/useUser";
 
 
 const ManageUsers = () => {
     const [refetch, allUser] = useUser();
 
-    console.log(allUser);
+    const handleMakeAdmin= user=>{
+        axios.patch(`http://localhost:5000/user/admin/${user._id}`)
+        .then(res=> {
+            if(res.data.modifiedCount >0){
+                refetch()
+            }
+        })
+    }
+
     return (
         <div>
 
@@ -15,19 +24,19 @@ const ManageUsers = () => {
                             <thead className="bg-gray-800 text-gray-500">
                                 <tr>
                                     <th className="p-3">#</th>
-                                    <th className="p-3">Brand</th>
-                                    <th className="p-3 text-left">Email</th>
+                                    <th className="p-3">User</th>
+                                    <th className="p-3 text-center">Email</th>
 
-                                    <th className="p-3 text-left">Status</th>
-                                    <th className="p-3 text-left">Action</th>
+                                    <th className="p-3 text-center">Status</th>
+                                    <th className="p-3 text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    allUser.map((item,index) => <tr key={item._id} className="bg-gray-800">
+                                    allUser.map((item, index) => <tr key={item._id} className="bg-gray-800">
                                         <th>
                                             {
-                                                ++ index
+                                                ++index
                                             }
                                         </th>
                                         <td className="p-3">
@@ -47,7 +56,7 @@ const ManageUsers = () => {
                                                 item?.email
                                             }
                                         </td>
-                                        
+
                                         <td className="p-3">
                                             <span className="bg-green-400 text-gray-50 rounded-md px-2">
                                                 {
@@ -56,15 +65,8 @@ const ManageUsers = () => {
                                             </span>
                                         </td>
                                         <td className="p-3 ">
-                                            <a href="#" className="text-gray-400 hover:text-gray-100 mr-2">
-                                                <i className="material-icons-outlined text-base">visibility</i>
-                                            </a>
-                                            <a href="#" className="text-gray-400 hover:text-gray-100  mx-2">
-                                                <i className="material-icons-outlined text-base">edit</i>
-                                            </a>
-                                            <a href="#" className="text-gray-400 hover:text-gray-100  ml-2">
-                                                <i className="material-icons-round text-base">delete_outline</i>
-                                            </a>
+                                            <button  className="btn btn-sm btn-primary mx-2">Make instructor</button>
+                                            <button onClick={()=>handleMakeAdmin(item)} className="btn btn-sm btn-primary">Make Admin</button>
                                         </td>
                                     </tr>)
                                 }
