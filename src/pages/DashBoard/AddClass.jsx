@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../hooks/useAuth';
@@ -22,7 +21,7 @@ const AddClass = () => {
         axios.post(img_hosting_url, formData)
             .then(response => {
                 if (response.data.success) {
-                    const imgURL = response.data.display_url;
+                    const imgURL = response.data.data.display_url;
                     const { instructor_name, instructor_email, class_name, avilable_seats, price } = data;
                     const newItem = { instructor_name, instructor_email, class_name, avilable_seats: parseInt(avilable_seats), price: parseInt(price), image: imgURL, status: "pending" };
                     axiosSecure.post('/classes', newItem)

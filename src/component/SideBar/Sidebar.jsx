@@ -16,7 +16,7 @@ const Sidebar = () => {
                     userRole === 'admin' && <>
 
                         <li className=''>
-                            <NavLink to='/dashboard/admin-home' > Admin Home</NavLink>
+                            <NavLink to='/dashboard/manage-classes' > Manage Classes</NavLink>
                         </li>
                         <li className=''>
                             <NavLink to='/dashboard/manage-users' ><FaUsersCog />  Manage Users</NavLink>

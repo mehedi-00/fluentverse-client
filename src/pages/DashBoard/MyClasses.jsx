@@ -1,7 +1,7 @@
 import useClasses from "../../hooks/useClasses";
 
 const MyClasses = () => {
-    const [refetch, allClasses, classLoading] = useClasses();
+    const [, myClasses, classLoading] = useClasses();
 
     if (classLoading) {
         return 'loadding ....';
@@ -11,7 +11,7 @@ const MyClasses = () => {
         <div>
 
             {
-                allClasses.length === 0 ? <div>
+                myClasses.length === 0 ? <div>
                     please add Class
                 </div> : <div className="flex items-center justify-center min-h-screen bg-gray-100">
                     <div className="col-span-12">
@@ -30,7 +30,7 @@ const MyClasses = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        allClasses.map((item, index) => <tr key={item._id} className="bg-gray-200">
+                                        myClasses.map((item, index) => <tr key={item._id} className="bg-gray-200">
                                             <th>
                                                 {
                                                     ++index

@@ -10,8 +10,8 @@ const useClasses = () => {
     const [userLoading] = useUserRole();
     const [axiosSecure] = useAxiosSecure();
 
-    const { data: allClasses = [], refetch,isLoading:classLoading } = useQuery({
-        queryKey: ['allClasses', user?.email],
+    const { data: myClasses = [], refetch,isLoading:classLoading } = useQuery({
+        queryKey: ['myClasses', user?.email],
         enabled: !loading && !userLoading,
         queryFn: async () => {
             const res = await axiosSecure.get(`/classes?email=${user.email}`);
@@ -19,7 +19,7 @@ const useClasses = () => {
             return res.data;
         }
     });
-    return [refetch, allClasses,classLoading];
+    return [refetch, myClasses,classLoading];
 };
 
 export default useClasses;
