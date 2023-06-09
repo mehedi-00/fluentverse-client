@@ -36,6 +36,7 @@ const AddClass = () => {
                                     timer: 1500
                                 });
                                 reset();
+                                navigate('/dashboard/my-classes')
 
                             }
                         });

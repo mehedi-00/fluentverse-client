@@ -1,5 +1,6 @@
 import useUser from "../../hooks/useUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
 
 
 const ManageUsers = () => {
@@ -10,6 +11,7 @@ const ManageUsers = () => {
         .then(res=> {
             if(res.data.modifiedCount >0){
                 refetch()
+                toast.success('successfully role updated')
             }
         })
     }

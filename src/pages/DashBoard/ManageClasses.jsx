@@ -12,12 +12,25 @@ const ManageClasses = () => {
     const [allClasses, refetch] = useAllClass();
     const [axiosSecure] = useAxiosSecure();
     const [isId, setId] = useState('');
-    const [isStatus, setStatus] = useState('');
-    // console.log(classRef.current);
-    const handleClassStatus = (id, status) => {
+    const handleApprove = id => {
+        axiosSecure.patch(`/class-status/approve/${id}`)
+            .then(data => {
+                if (data.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Status update',
+                        showConfirmButton: false,
+                        timer: 500
+                    });
+                    refetch();
+
+                }
+
+            });
+    };
+    const handleDeny = (id) => {
         setId(id);
-        setStatus(status);
-        // console.log(isStatus);
         setIsOpen(true);
     };
     const handleFeedBack = e => {
@@ -25,11 +38,9 @@ const ManageClasses = () => {
         const form = e.target;
         const feedback = form.feedback.value;
         const newData = {
-            status: isStatus,
             feedback
         };
-        console.log(newData);
-        axiosSecure.patch(`/class-status/${isId}`, newData)
+        axiosSecure.patch(`/class-status/deny/${isId}`, newData)
             .then(data => {
                 if (data.data.modifiedCount > 0) {
 
@@ -46,7 +57,7 @@ const ManageClasses = () => {
 
                 }
 
-        });
+            });
 
 
     };
@@ -141,10 +152,10 @@ const ManageClasses = () => {
                                             </td>
 
                                             <td className="p-3 ">
-                                                <button onClick={() => handleClassStatus(item._id, 'approved')} className="btn btn-sm btn-primary mx-2">
+                                                <button disabled={item.status !== 'pending'} onClick={()=> handleApprove(item._id)} className="btn btn-sm btn-primary mx-2">
                                                     Approve
                                                 </button>
-                                                <button onClick={() => handleClassStatus(item._id, 'deny')} className="btn btn-sm btn-primary mx-2">
+                                                <button  disabled={item.status !== 'pending'} onClick={() => handleDeny(item._id)} className="btn btn-sm btn-primary mx-2">
                                                     Deny
                                                 </button>
 
