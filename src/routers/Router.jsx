@@ -11,6 +11,7 @@ import ManageUsers from "../pages/DashBoard/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import AddClass from "../pages/DashBoard/AddClass";
+import MyClasses from "../pages/DashBoard/MyClasses";
 
 
 
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
             },
             // instructor route
 
+            {
+                path: '/dashboard/my-classes',
+                element: <InstructorRoute><MyClasses/></InstructorRoute>
+            },
             {
                 path: '/dashboard/add-class',
                 element: <InstructorRoute><AddClass/></InstructorRoute>

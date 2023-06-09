@@ -27,7 +27,7 @@ const Sidebar = () => {
                     userRole === 'instructor' && <>
 
                         <li className=''>
-                            <NavLink to='/dashboard/instructor-home' > Instructore Home</NavLink>
+                            <NavLink to='/dashboard/my-classes' >My Classes </NavLink>
                         </li>
                         <li className=''>
                             <NavLink  to='/dashboard/add-class' > Add Class </NavLink>
