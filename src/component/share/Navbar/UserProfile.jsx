@@ -1,8 +1,12 @@
 import { Menu, Switch } from '@headlessui/react';
 import { useState } from 'react';
-
-const UserProfile = ({img,logout}) => {
+import { Link } from 'react-router-dom';
+import useUserRole from '../../../hooks/useUserRole';
+const UserProfile = ({ img, logout }) => {
     const [enabled, setEnabled] = useState(false);
+
+    const [, userRole] = useUserRole();
+
     return (
         <div>
 
@@ -10,12 +14,17 @@ const UserProfile = ({img,logout}) => {
                 <Menu.Button>
                     <img className='w-8 h-8 rounded-full object-cover' src={img} alt="" />
                 </Menu.Button>
-                <Menu.Items className='shadow-md shadow-slate-600 mt-4 absolute  z-50 flex flex-col bg-white px-4 w-[200px] py-4 right-10 '>
+                <Menu.Items className='shadow-md shadow-slate-600 mt-4 absolute flex flex-col z-50  bg-white px-4 rounded-md w-[200px] py-4 right-10 '>
                     hello
 
 
-
-                    <button className='myBtn px-3 py-2 my-2 rounded-sm bg-orange-600' onClick={logout}>
+                 {userRole&&  <Link to={
+                        userRole === 'admin' ? '/dashboard/manage-users' : userRole === 'instructor'? '/dashboard/add-class': '/dashboard/student'
+                    } className='btn btn-md bg-red-300 px-3 py-2'>
+                        DashBoard
+                    </Link>
+}
+                    <button className='myBtn inline px-3 py-2 my-2 rounded-sm bg-orange-600' onClick={logout}>
                         Log Out
                     </button>
 

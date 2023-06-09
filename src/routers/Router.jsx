@@ -9,6 +9,8 @@ import PrivetRoute from "./PrivetRoute";
 import DashBoard from "../layouts/DashBoard";
 import ManageUsers from "../pages/DashBoard/ManageUsers";
 import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
+import AddClass from "../pages/DashBoard/AddClass";
 
 
 
@@ -37,10 +39,20 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivetRoute><DashBoard /></PrivetRoute>,
         children:[
+            // addmin route
             {
                 path: '/dashboard/manage-users',
                 element: <AdminRoute><ManageUsers/></AdminRoute>
+            },
+            // instructor route
+
+            {
+                path: '/dashboard/add-class',
+                element: <InstructorRoute><AddClass/></InstructorRoute>
             }
+
+
+            // student route
         ]
     }
 ]);
