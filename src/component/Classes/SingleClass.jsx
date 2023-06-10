@@ -31,7 +31,7 @@ const SingleClass = ({singleClass}) => {
                 }
             
                 
-                axiosSecure.post('/select-class', {newData})
+                axiosSecure.post('/select-class', newData)
                 .then(data=>{
                     if(data.data.insertedId){
                         toast.success('Successfully seleced class!')

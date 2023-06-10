@@ -14,6 +14,7 @@ import AddClass from "../pages/DashBoard/AddClass";
 import MyClasses from "../pages/DashBoard/MyClasses";
 import ManageClasses from "../pages/DashBoard/ManageClasses";
 import Classes from "../pages/Classes/Classes";
+import SelectedClass from "../pages/DashBoard/SelectedClass";
 
 
 
@@ -60,10 +61,15 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/add-class',
                 element: <InstructorRoute><AddClass/></InstructorRoute>
-            }
+            },
 
 
             // student route
+            {
+                path: '/dashboard/selected-class',
+                element: <SelectedClass/>
+            }
+
         ]
     }
 ]);

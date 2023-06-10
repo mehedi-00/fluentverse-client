@@ -22,7 +22,7 @@ const UserProfile = ({ img, logout }) => {
 
 
                  {userLoading? '':  <Link to={
-                        userRole === 'admin' ? '/dashboard/manage-users' : userRole === 'instructor'? '/dashboard/add-class': '/dashboard/student'
+                        userRole === 'admin' ? '/dashboard/manage-users' : userRole === 'instructor'? '/dashboard/add-class': '/dashboard/selected-class'
                     } className='btn btn-md bg-red-300 px-3 py-2'>
                         DashBoard
                     </Link>
