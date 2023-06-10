@@ -1,10 +1,34 @@
+import Swal from "sweetalert2";
 import useSelectClass from "../../hooks/useSelectClass";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
 
 const SelectedClass = () => {
-    const [selectClass,,classLoading] = useSelectClass();
-    console.log(selectClass);
+    const [axiosSecure] = useAxiosSecure()
+    const [selectClass,refetch,classLoading] = useSelectClass();
     if (classLoading) {
         return 'loadding ....';
+    }
+    const handleDelete = id=>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/select-class/${id}`)
+                .then(data=>{
+                    if(data.data.deletedCount>0){
+                     toast.success('Class deleted successfully')
+                     refetch()
+                    }
+                })
+            }
+          })
     }
 
     return (
@@ -56,7 +80,7 @@ const SelectedClass = () => {
                                                 <button className="btn btn-sm btn-primary mx-2">
                                                     Pay
                                                 </button>
-                                                <button className="btn btn-sm btn-primary mx-2">
+                                                <button onClick={()=>handleDelete(item._id)} className="btn btn-sm btn-primary mx-2">
                                                     delete
                                                 </button>
 

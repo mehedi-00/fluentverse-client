@@ -18,7 +18,7 @@ const SingleClass = ({singleClass}) => {
         avilable_seats,
         class_name
         } = singleClass
-
+          
         const handleSelect= ()=>{
             
                if(user && user?.email){ 
