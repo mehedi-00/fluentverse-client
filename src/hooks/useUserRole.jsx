@@ -1,17 +1,15 @@
 import { useAuth } from "./useAuth";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
-
+import axios from 'axios'
 const useUserRole = () => {
-    const [axioSecure] = useAxiosSecure()
-    const { user, loading } = useAuth();
+    const { user } = useAuth();
     const { data: userRole, isLoading: userLoading } = useQuery({
         queryKey: ['userRole', user?.email],
-        enabled: !loading && !!user?.email,
+        enabled:!!user?.email && !!localStorage.getItem("access-token"),
         queryFn: async () => {
-            const res = await axioSecure.get(`/user/role/${user?.email}`);
-
-            return res.data.role;
+            const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/user/role/${user?.email}`);
+            console.log(res);
+            return res.data?.role || 'student';
         }
     });
     return [userLoading, userRole];

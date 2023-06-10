@@ -13,6 +13,7 @@ import InstructorRoute from "./InstructorRoute";
 import AddClass from "../pages/DashBoard/AddClass";
 import MyClasses from "../pages/DashBoard/MyClasses";
 import ManageClasses from "../pages/DashBoard/ManageClasses";
+import Classes from "../pages/Classes/Classes";
 
 
 
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/classes',
-                element: <PrivetRoute><p>Classes</p></PrivetRoute>
+                element: <Classes/>
             }, {
                 path: 'login',
                 element: <Login />

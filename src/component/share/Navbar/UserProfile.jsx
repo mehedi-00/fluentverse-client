@@ -6,6 +6,9 @@ const UserProfile = ({ img, logout }) => {
     const [enabled, setEnabled] = useState(false);
 
     const [userLoading, userRole] = useUserRole();
+    if(userLoading){
+        return 'loading...'
+    }
 
     return (
         <div>
