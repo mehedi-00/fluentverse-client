@@ -4,20 +4,20 @@ import { useAuth } from '../../hooks/useAuth';
 import axios from 'axios';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { useState } from 'react';
+import { PropagateLoader } from 'react-spinners';
 const img_hosting_token = import.meta.env.VITE_IMG_HOSTING_TOKEN;
 const AddClass = () => {
+    const [submitLoading,setSubmitLoading] = useState(false)
     const [axiosSecure] = useAxiosSecure();
     const { user } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const img_hosting_url = `https://api.imgbb.com/1/upload?expiration=600&key=${img_hosting_token}`;
     const onSubmit = data => {
-
+        setSubmitLoading(true)
         const formData = new FormData();
         formData.append('image', data.image[0]);
-
-
-
         axios.post(img_hosting_url, formData)
             .then(response => {
                 if (response.data.success) {
@@ -28,6 +28,7 @@ const AddClass = () => {
                         .then(res => {
                             console.log(res.data);
                             if (res.data.insertedId) {
+                                setSubmitLoading(false)
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
@@ -109,8 +110,8 @@ const AddClass = () => {
                                     </div>
                                     <button className="mt-3 text-lg font-semibold 
             bg-gray-800 w-full text-white rounded-lg
-            px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
-                                        Add Class
+            px-6 py-3 block shadow-xl text-center hover:text-white hover:bg-black mx-auto">
+                                       {submitLoading? <PropagateLoader color="#36d7b7" className='py-3' /> :'Add Class'}
                                     </button>
                                 </form>
 

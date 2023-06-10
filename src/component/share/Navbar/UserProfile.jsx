@@ -5,7 +5,7 @@ import useUserRole from '../../../hooks/useUserRole';
 const UserProfile = ({ img, logout }) => {
     const [enabled, setEnabled] = useState(false);
 
-    const [, userRole] = useUserRole();
+    const [userLoading, userRole] = useUserRole();
 
     return (
         <div>
@@ -18,7 +18,7 @@ const UserProfile = ({ img, logout }) => {
                     hello
 
 
-                 {userRole&&  <Link to={
+                 {userLoading? '':  <Link to={
                         userRole === 'admin' ? '/dashboard/manage-users' : userRole === 'instructor'? '/dashboard/add-class': '/dashboard/student'
                     } className='btn btn-md bg-red-300 px-3 py-2'>
                         DashBoard
