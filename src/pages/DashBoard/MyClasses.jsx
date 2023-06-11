@@ -69,7 +69,7 @@ const MyClasses = () => {
                                                 </div>
                                             </td>
                                             <td className="p-3">
-                                                0
+                                               {item?.total_enroled||0 }
                                             </td>
 
                                             <td className="p-3">

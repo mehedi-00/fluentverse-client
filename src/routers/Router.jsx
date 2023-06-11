@@ -17,6 +17,7 @@ import Classes from "../pages/Classes/Classes";
 import SelectedClass from "../pages/DashBoard/SelectedClass";
 import Payment from "../pages/DashBoard/Payment/Payment";
 import EnrolledClass from "../pages/DashBoard/EnrolledClass";
+import StudentRoute from "./StudentRoute";
 
 
 
@@ -31,7 +32,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/classes',
-                element: <Classes/>
+                element: <Classes />
             }, {
                 path: 'login',
                 element: <Login />
@@ -44,40 +45,40 @@ export const router = createBrowserRouter([
     {
         path: 'dashboard',
         element: <PrivetRoute><DashBoard /></PrivetRoute>,
-        children:[
+        children: [
             // addmin route
             {
                 path: 'manage-users',
-                element: <AdminRoute><ManageUsers/></AdminRoute>
+                element: <AdminRoute><ManageUsers /></AdminRoute>
             },
             {
                 path: 'manage-classes',
-                element: <AdminRoute><ManageClasses/></AdminRoute>
+                element: <AdminRoute><ManageClasses /></AdminRoute>
             },
             // instructor route
 
             {
                 path: 'my-classes',
-                element: <InstructorRoute><MyClasses/></InstructorRoute>
+                element: <InstructorRoute><MyClasses /></InstructorRoute>
             },
             {
                 path: 'add-class',
-                element: <InstructorRoute><AddClass/></InstructorRoute>
+                element: <InstructorRoute><AddClass /></InstructorRoute>
             },
 
 
             // student route
             {
                 path: 'selected-class',
-                element: <SelectedClass/>
+                element: <StudentRoute> <SelectedClass /></StudentRoute>
             },
             {
                 path: 'payment/:id',
-                element: <Payment/>
+                element: <StudentRoute><Payment /></StudentRoute>
             },
             {
                 path: 'enrolled-class',
-                element: <EnrolledClass/>
+                element: <StudentRoute> <EnrolledClass /></StudentRoute>
             }
 
         ]
