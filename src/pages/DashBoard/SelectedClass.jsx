@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useSelectClass from "../../hooks/useSelectClass";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const SelectedClass = () => {
     const [axiosSecure] = useAxiosSecure()
@@ -77,9 +78,9 @@ const SelectedClass = () => {
                                             </td>
        
                                             <td className="p-3 ">
-                                                <button className="btn btn-sm btn-primary mx-2">
+                                                <Link to={`/dashboard/payment/${item._id}`} className="btn btn-sm btn-primary mx-2">
                                                     Pay
-                                                </button>
+                                                </Link>
                                                 <button onClick={()=>handleDelete(item._id)} className="btn btn-sm btn-primary mx-2">
                                                     delete
                                                 </button>

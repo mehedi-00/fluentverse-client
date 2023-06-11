@@ -39,7 +39,7 @@ const Sidebar = () => {
                     userRole === 'student' && <>
 
                         <li className=''>
-                            <NavLink to='/dashboard/student-home' > Student Home</NavLink>
+                            <NavLink to='/dashboard/selected-class' > Selected Class</NavLink>
                         </li>
 
                     </>
