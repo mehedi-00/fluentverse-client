@@ -1,54 +1,30 @@
-import Swal from "sweetalert2";
-import useSelectClass from "../../hooks/useSelectClass";
+import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import useAllClass from "../../hooks/useAllClass";
 
-const SelectedClass = () => {
+
+
+
+const EnrolledClass = () => {
     const [axiosSecure] = useAxiosSecure();
-    const [selectClass, refetch, classLoading] = useSelectClass();
-    const [allClasses] = useAllClass();
-    const naviagte = useNavigate()
-    if (classLoading) {
-        return 'loadding ....';
-    }
-    const handleDelete = id => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axiosSecure.delete(`/select-class/${id}`)
-                    .then(data => {
-                        if (data.data.deletedCount > 0) {
-                            toast.success('Class deleted successfully');
-                            refetch();
-                        }
-                    });
-            }
-        });
-    };
-    const handlePayment = (id,class_id) => {
-        const checkClasses = allClasses.find(item => item._id === class_id);
-        if (checkClasses.avilable_seats <= 0) {
-            toast.success('This Class Seat not avilable');
-        }else{
-            naviagte(`/dashboard/payment/${id}`)
+    const { user } = useAuth();
+    const { data: enrrolledClasses = [], isLoading: enrolleLoading } = useQuery({
+        queryKey: ['enrroledClasses', user?.email],
+        enabled: !!user?.email && !!localStorage.getItem('access-token'),
+        queryFn: async () => {
+            const res = await axiosSecure(`/enrolled?email=${user?.email}`);
+            return res.data;
         }
-        
-    };
-
+    });
+    if (enrolleLoading) {
+        return 'loading...';
+    }
     return (
+       
         <div>
 
             {
-                selectClass.length === 0 ? <div>
+                enrrolledClasses.length <= 0 ? <div>
                     please add Class
                 </div> : <div className="flex items-center justify-center min-h-screen bg-gray-100">
                     <div className="col-span-12">
@@ -65,7 +41,7 @@ const SelectedClass = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        selectClass.map((item, index) => <tr key={item._id} className="bg-gray-200">
+                                        enrrolledClasses.map((item, index) => <tr key={item._id} className="bg-gray-200">
                                             <th>
                                                 {
                                                     ++index
@@ -90,11 +66,9 @@ const SelectedClass = () => {
                                             </td>
 
                                             <td className="p-3 ">
-                                                <button onClick={() => handlePayment(item._id,item.class_id)} className="btn btn-sm btn-primary mx-2">
-                                                    Pay
-                                                </button>
-                                               
-                                                <button onClick={() => handleDelete(item._id)} className="btn btn-sm btn-primary mx-2">
+
+
+                                                <button className="btn btn-sm btn-primary mx-2">
                                                     delete
                                                 </button>
 
@@ -115,4 +89,4 @@ const SelectedClass = () => {
     );
 };
 
-export default SelectedClass;
+export default EnrolledClass;

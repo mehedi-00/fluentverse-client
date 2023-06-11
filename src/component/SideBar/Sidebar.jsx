@@ -41,6 +41,9 @@ const Sidebar = () => {
                         <li className=''>
                             <NavLink to='/dashboard/selected-class' > Selected Class</NavLink>
                         </li>
+                        <li className=''>
+                            <NavLink to='/dashboard/enrolled-class' > Selected Class</NavLink>
+                        </li>
 
                     </>
                 }
