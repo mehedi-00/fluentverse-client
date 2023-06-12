@@ -3,6 +3,7 @@ import Container from "../share/Container";
 import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 import SectionHeading from "../share/SectionHeading";
+import DataLoader from "../share/DataLoader";
 
 
 
@@ -17,8 +18,8 @@ const TopInstructor = () => {
         }
 
     });
-    if (loading || instructorLoading) {
-        return 'Loading..';
+    if (instructorLoading) {
+        return <DataLoader/>
     }
     return (
         <div className="">

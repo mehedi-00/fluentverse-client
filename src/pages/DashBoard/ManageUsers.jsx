@@ -5,44 +5,47 @@ import { toast } from "react-hot-toast";
 
 const ManageUsers = () => {
     const [refetch, allUser] = useUser();
-    const [axiosSecure] = useAxiosSecure()
-    const handleMakeAdmin= (user,role)=>{
+    const [axiosSecure] = useAxiosSecure();
+    const handleMakeAdmin = (user, role) => {
         axiosSecure.patch(`/user/admin/${user._id}/?role=${role}`)
-        .then(res=> {
-            if(res.data.modifiedCount >0){
-                refetch()
-                toast.success('successfully role updated')
-            }
-        })
-    }
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    refetch();
+                    toast.success('successfully role updated');
+                }
+            });
+    };
 
     return (
-        <div>
 
-            <div className="flex items-center justify-center min-h-screen bg-gray-100">
-                <div className="col-span-12">
-                    <div className="overflow-auto lg:overflow-visible ">
-                        <table className="table text-gray-400 border-separate space-y-6 text-sm">
-                            <thead className="bg-gray-800 text-gray-500">
+
+        <div className=" mt-10">
+            <h2 className="text-3xl text-center"> All User</h2>
+            <div className="sm:-mx-6 lg:-mx-8">
+                <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full text-left text-sm font-light mx-5">
+                            <thead className="border-b font-medium dark:border-neutral-500">
                                 <tr>
-                                    <th className="p-3">#</th>
-                                    <th className="p-3">User</th>
-                                    <th className="p-3 text-center">Email</th>
+                                    <th scope="col" className="px-2 md:px-6 py-4">#</th>
+                                    <th scope="col" className="px-2 md:px-6 py-4">User</th>
+                                    <th scope="col" className="px-2 md:px-6 py-4">Email</th>
+                                    <th scope="col" className="px-2 md:px-6 py-4">Status</th>
+                                    <th scope="col" className="px-2 md:px-6 py-4">Action</th>
 
-                                    <th className="p-3 text-center">Status</th>
-                                    <th className="p-3 text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    allUser.map((item, index) => <tr key={item._id} className="bg-gray-200">
-                                        <th>
+                                    allUser.map((item, index) => <tr
+                                        key={item._id}
+                                        className="border-b dark:border-neutral-500">
+                                        <td className="whitespace-nowrap px-6 py-4 font-medium">
                                             {
                                                 ++index
                                             }
-                                        </th>
-                                        <td className="p-3">
-
+                                        </td>
+                                        <td className="whitespace-nowrap px-6 py-4">
                                             <div className="flex align-items-center">
                                                 <img className="rounded-full h-12 w-12  object-cover" src={item?.photoUrl} />
                                                 <div className="ml-3">
@@ -53,34 +56,34 @@ const ManageUsers = () => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="p-3">
+                                        <td className="whitespace-nowrap px-6 py-4">
                                             {
                                                 item?.email
                                             }
                                         </td>
-
-                                        <td className="p-3">
+                                        <td className="whitespace-nowrap px-6 py-4">
                                             <span className="bg-green-400 text-gray-50 rounded-md px-2">
                                                 {
                                                     item?.role
                                                 }
                                             </span>
                                         </td>
-                                        <td className="p-3 ">
-                                            <button disabled={item.role === 'admin' || item.role === 'instructor'} onClick={()=>handleMakeAdmin(item,'instructor')}  className="btn btn-sm btn-primary mx-2">Make instructor</button>
-                                            <button disabled={item.role === 'admin' || item.role === 'instructor'}  onClick={()=>handleMakeAdmin(item,'admin')} className="btn btn-sm btn-primary">Make Admin</button>
+                                        <td className="whitespace-nowrap px-6 py-4">
+                                            <button disabled={item.role === 'admin' || item.role === 'instructor'} onClick={() => handleMakeAdmin(item, 'instructor')} className="btn btn-sm btn-primary mx-2">Make instructor</button>
+                                            <button disabled={item.role === 'admin' || item.role === 'instructor'} onClick={() => handleMakeAdmin(item, 'admin')} className="btn btn-sm btn-primary">Make Admin</button>
                                         </td>
+
                                     </tr>)
                                 }
-
 
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
         </div>
+
+
     );
 };
 

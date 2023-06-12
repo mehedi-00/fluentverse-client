@@ -1,3 +1,4 @@
+import Loader from "../component/share/Loader";
 import { useAuth } from "../hooks/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
 const PrivetRoute = ({ children }) => {
@@ -5,9 +6,7 @@ const PrivetRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return <div>
-      loader ...
-    </div>;
+    return <Loader/>
   }
   if (!user) {
     return <Navigate to='/login' state={{from:location}} replace />

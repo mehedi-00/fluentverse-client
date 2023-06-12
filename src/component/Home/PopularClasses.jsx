@@ -3,6 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import Container from "../share/Container";
 import { useQuery } from "@tanstack/react-query";
 import SectionHeading from "../share/SectionHeading";
+import DataLoader from "../share/DataLoader";
 
 
 
@@ -17,8 +18,8 @@ const PopularClasses = () => {
         }
 
     });
-    if (loading || popularClassLoading) {
-        return 'Loading..';
+    if (popularClassLoading) {
+        return <DataLoader/>
     }
     return (
         <div className="">

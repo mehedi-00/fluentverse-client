@@ -3,6 +3,8 @@ import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 import Container from "../../component/share/Container";
 import SingleClass from "../../component/Classes/SingleClass";
+import Loader from "../../component/share/Loader";
+import SectionHeading from "../../component/share/SectionHeading";
 
 
 
@@ -16,13 +18,14 @@ const Classes = () => {
             return res.data;
         }
     });
-    if(classLoading){
-        return 'loading...'
+    if( classLoading){
+        return <Loader/>
     }
 
     return (
         <div className="my-20">
            <Container>
+                <SectionHeading title='All Classes'/>
                {approvedClasses.length === 0? <div>Kono data Nai</div>:
                <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5">
                     {

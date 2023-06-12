@@ -65,41 +65,45 @@ const ManageClasses = () => {
     return (
         <div>
             <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-                <Dialog.Panel className='fixed max-w-screen-lg top-1/3 left-1/2 bg-white -translate-x-1/2 rounded-md shadow-xl p-8'>
+                <Dialog.Panel className='fixed w-[70vw] max-w-screen-lg top-1/3 left-1 md:left-1/2 bg-white md:-translate-x-1/2 rounded-md shadow-xl   p-8'>
                     <Dialog.Title>Give Feedback </Dialog.Title>
 
                     <form onSubmit={handleFeedBack} className="my-3">
                         <textarea name="feedback" placeholder="Type Here" required className="textarea textarea-bordered textarea-lg w-full max-w-lg my-3" ></textarea>
-                        <input type="submit" className="btn btn-md btn-outline btn-primary" value="Send" />
+                        <input type="submit" className="myBtn px-6 py-2" value="Send" />
                     </form>
 
 
-                    <button className="absolute top-3 right-3" onClick={() => setIsOpen(false)}><FaTimes /></button>
+                    <button className=" absolute top-3 right-3" onClick={() => setIsOpen(false)}><FaTimes /></button>
                 </Dialog.Panel>
             </Dialog>
 
             {
                 allClasses.length === 0 ? <div>
-                    please add Class
-                </div> : <div className="flex items-center justify-center min-h-screen bg-gray-100">
-                    <div className="col-span-12">
-                        <div className="overflow-auto lg:overflow-visible ">
-                            <table className="table text-gray-400 border-separate space-y-6 text-sm">
-                                <thead className="bg-gray-800 text-gray-500">
-                                    <tr>
-                                        <th className="p-3">#</th>
-                                        <th className="p-3">Image</th>
-                                        <th className="p-3">Class Name</th>
-                                        <th className="p-3 text-center">Avilable seats</th>
-                                        <th className="p-3 text-center">Price</th>
+                   <h2 className="text-center text-3xl"> please add Class</h2>
+                </div> :
 
-                                        <th className="p-3 text-center">Status</th>
-                                        <th className="p-3 text-center">Action</th>
+
+                 <div className="flex items-center justify-center min-h-screen p-8 md: ">
+                     <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full text-left text-sm font-light mx-5">
+                            <thead className="border-b font-medium dark:border-neutral-500">
+                                    <tr>
+                                        <th scope="col" className="px-2 md:px-6 py-4">#</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">Image</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">Class Name</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">Avilable seats</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">Price</th>
+
+                                        <th scope="col" className="px-2 md:px-6 py-4">Status</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-                                        allClasses.map((item, index) => <tr key={item._id} className="bg-gray-200">
+                                        allClasses.map((item, index) => <tr key={item._id} 
+                                        className="border-b dark:border-neutral-500">
                                             <th>
                                                 {
                                                     ++index
@@ -107,7 +111,7 @@ const ManageClasses = () => {
                                             </th>
                                             <td className="p-3">
 
-                                                <div className="flex align-items-center">
+                                                <div className="flex flex-col md:flex-row  align-items-center">
                                                     <img className="rounded-full h-12 w-12  object-cover" src={item?.image} />
                                                     <div className="ml-3">
                                                         <div className="">
@@ -155,7 +159,7 @@ const ManageClasses = () => {
                                                 <button disabled={item.status !== 'pending'} onClick={()=> handleApprove(item._id)} className="btn btn-sm btn-primary mx-2">
                                                     Approve
                                                 </button>
-                                                <button  disabled={item.status !== 'pending'} onClick={() => handleDeny(item._id)} className="btn btn-sm btn-primary mx-2">
+                                                <button  disabled={item.status !== 'pending'} onClick={() => handleDeny(item._id)} className="btn btn-sm btn-primary mx-2 my-3 md:my-0">
                                                     Deny
                                                 </button>
 

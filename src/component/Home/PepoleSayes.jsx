@@ -1,6 +1,6 @@
 import Container from "../share/Container";
 import SectionHeading from "../share/SectionHeading";
-
+import { motion } from "framer-motion";
 const PepoleSayes = () => {
     return (
         <Container>
@@ -11,7 +11,17 @@ const PepoleSayes = () => {
                         
                         <div className="-mx-3 md:flex items-start">
                             <div className="px-3 md:w-1/3">
-                                <div className="w-full mx-auto rounded-lg bg-white border border-gray-200 p-5 text-gray-800 font-light mb-6">
+                                <motion.div
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{
+                            
+                                  duration: 0.8,
+                                  delay: 0.5,
+                                  ease: [0, 0.71, 0.2, 1.01]
+                                }}
+                                 className="box w-full mx-auto rounded-lg bg-white border border-gray-200 p-5 text-gray-800 font-light mb-6"
+                                 >
                                     <div className="w-full flex mb-4 items-center">
                                         <div className="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
                                             <img src="https://i.pravatar.cc/100?img=1" alt="" />
@@ -23,7 +33,7 @@ const PepoleSayes = () => {
                                     <div className="w-full">
                                         <p className="text-sm leading-tight"><span className="text-lg leading-none italic font-bold text-gray-400 mr-1">&rdquo;</span>As someone who has taken language courses before, I can confidently say this was one of the best. The instructor was highly skilled and created a supportive learning environment. The course materials were comprehensive, and I appreciated the focus on both grammar and conversation. Highly recommended!.<span className="text-lg leading-none italic font-bold text-gray-400 ml-1">&rdquo;</span></p>
                                     </div>
-                                </div>
+                                </motion.div>
                                 <div className="w-full mx-auto rounded-lg bg-white border border-gray-200 p-5 text-gray-800 font-light mb-6">
                                     <div className="w-full flex mb-4 items-center">
                                         <div className="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">

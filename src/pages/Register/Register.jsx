@@ -58,7 +58,7 @@ const Register = () => {
     };
 
     return (
-        <div className="relative py-8 bg-gradient-to-br from-sky-50 to-gray-200">
+        <div className="relative py-8 dark:bg-black ">
             <div className="relative  m-auto px-6 text-gray-500 md:px-12 xl:px-40">
                 <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
                     <div className="rounded-xl bg-white shadow-xl">
@@ -112,11 +112,9 @@ const Register = () => {
 
                                     </div>
 
-                                    <input className="mt-3 text-lg font-semibold 
-            bg-gray-800 w-full text-white rounded-lg
-            px-6 py-3 block shadow-xl hover:text-white hover:bg-black" type="submit" value="Register" />
+                                    <input className="myBtn w-full px-6 py-3 block " type="submit" value="Register" />
                                 </form>
-                                <p>Allready have account <Link to='/login'>Login</Link></p>
+                                <p>Allready have account <Link to='/login' className='text-primary' >Login</Link></p>
                             </div>
 
                             <div className="mt-16 grid space-y-4">

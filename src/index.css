@@ -12,17 +12,9 @@
     color: white;
 }
 
-.table {
-    border-spacing: 0 15px;
-}
 
-i {
-    font-size: 1rem !important;
-}
 
-.table tr {
-    border-radius: 20px;
-}
+
 
 tr td:nth-last-child(),
 tr th:nth-last-child() {
@@ -86,11 +78,21 @@ tr th:nth-child(1) {
     background-size: 100% calc(2vw + 241px);
     }
     }
-    @media (max-width:500px){
+    @media (max-width:600px){
     .shapedividers_com-7::before{
     background-size: 100% calc(2vw + 241px);
     display: none;
     }
+    
+    }
+    @media  (max-width:600px) {
+        .dashboard-drowar{
+            transform: translateX(-100vw);
+            -webkit-transform: translateX(-100vw);
+            -moz-transform: translateX(-100vw);
+            -ms-transform: translateX(-100vw);
+            -o-transform: translateX(-100vw);
+}
     }
      
      

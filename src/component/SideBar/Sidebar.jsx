@@ -3,12 +3,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { FaUsersCog } from "react-icons/fa";
 import useUserRole from '../../hooks/useUserRole';
 import { FaHome } from "react-icons/fa";
+import Logo from '../share/Logo';
 const Sidebar = () => {
     
     const [, userRole] = useUserRole();
     return (
         <div className="menu p-4 w-38 h-full bg-indigo-400 ">
-            <Link to='/dashboard' className='text-3xl font-bold' >Fluent Verse</Link>
+            <Logo/>
 
             <h4 className='border-b-2 border-gray-300 pb-4'>Dash Board</h4>
             <ul className='mt-8'>
