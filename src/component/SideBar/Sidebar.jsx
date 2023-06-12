@@ -1,18 +1,19 @@
 import { Link, NavLink } from 'react-router-dom';
 
-import { FaUsersCog } from "react-icons/fa";
+import { FaMoneyBillAlt, FaUsersCog } from "react-icons/fa";
 import useUserRole from '../../hooks/useUserRole';
 import { FaHome } from "react-icons/fa";
 import Logo from '../share/Logo';
-import { HiTableCells } from "react-icons/hi2";
+import { HiTableCells,HiOutlineEyeDropper, HiOutlineCircleStack } from "react-icons/hi2";
+import { IoAppsSharp } from "react-icons/io5";
 const Sidebar = () => {
     
     const [, userRole] = useUserRole();
     return (
-        <div className="menu p-4 w-38 h-full bg-white ">
+        <div className="menu p-4 w-38 h-full bg-white border-r border-primary shadow-xl">
             <Logo/>
 
-            <h4 className='border-b-2 border-gray-300 pb-4 font-bold text-2xl my-5 text-center '>Dash Board</h4>
+            <h4 className='border-b-2 border-gray-300 pb-4 font-bold text-2xl my-5 text-center '> <IoAppsSharp className='inline'/>  Dash Board</h4>
             <ul className='mt-8 '>
                 {
                     userRole === 'admin' && <>
@@ -29,10 +30,10 @@ const Sidebar = () => {
                     userRole === 'instructor' && <>
 
                         <li className=''>
-                            <NavLink to='/dashboard/my-classes'  className={({ isActive }) => (isActive ? "navActive" : "default")}>My Classes </NavLink>
+                            <NavLink to='/dashboard/my-classes'  className={({ isActive }) => (isActive ? "navActive" : "default")}><HiTableCells /> My Classes </NavLink>
                         </li>
                         <li className=''>
-                            <NavLink  to='/dashboard/add-class'  className={({ isActive }) => (isActive ? "navActive" : "default")}> Add Class </NavLink>
+                            <NavLink  to='/dashboard/add-class'  className={({ isActive }) => (isActive ? "navActive" : "default")}><HiOutlineEyeDropper/>  Add Class </NavLink>
                         </li>
 
                     </>
@@ -41,13 +42,13 @@ const Sidebar = () => {
                     userRole === 'student' && <>
 
                         <li className=''>
-                            <NavLink to='/dashboard/selected-class'  className={({ isActive }) => (isActive ? "navActive" : "default")}> Selected Class</NavLink>
+                            <NavLink to='/dashboard/selected-class'  className={({ isActive }) => (isActive ? "navActive" : "default")}><HiOutlineEyeDropper/> Selected Class</NavLink>
                         </li>
                         <li className=''>
-                            <NavLink to='/dashboard/enrolled-class'  className={({ isActive }) => (isActive ? "navActive" : "default")}> Enrolled Class</NavLink>
+                            <NavLink to='/dashboard/enrolled-class'  className={({ isActive }) => (isActive ? "navActive" : "default")}> <HiOutlineCircleStack/> Enrolled Class</NavLink>
                         </li>
                         <li className=''>
-                            <NavLink to='/dashboard/payment-history'  className={({ isActive }) => (isActive ? "navActive" : "default")}> Payment History</NavLink>
+                            <NavLink to='/dashboard/payment-history'  className={({ isActive }) => (isActive ? "navActive" : "default")}><FaMoneyBillAlt/> Payment History</NavLink>
                         </li>
 
                     </>

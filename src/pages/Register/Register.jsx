@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useAuth } from '../../hooks/useAuth';
 import { addUser } from '../../api/userApi';
 
