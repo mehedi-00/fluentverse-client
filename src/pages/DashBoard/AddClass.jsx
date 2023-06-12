@@ -6,6 +6,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import { PropagateLoader } from 'react-spinners';
+import { Helmet } from 'react-helmet';
 const img_hosting_token = import.meta.env.VITE_IMG_HOSTING_TOKEN;
 const AddClass = () => {
     const [submitLoading, setSubmitLoading] = useState(false);
@@ -49,12 +50,15 @@ const AddClass = () => {
 
     };
     return (
-        <div className="relative py-3 mb-20"> 
-        
+        <div className="relative py-3 mb-20">
+            <Helmet>
+                <title>Fluent Verse | Add Class</title>
+            </Helmet>
             <div className="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-20">
                 <div className="m-auto  lg:w-10/12 ">
                     <div className="rounded-xl bg-white shadow-xl">
                         <div className="p-6 sm:p-16">
+                            <h2 className="text-3xl text-center my-3"> Add Class</h2>
 
                             <div className="space-y-4">
                                 <form className="mt-8 border border-slate-900 md:border-0 rounded-md p-5 shadow-md" onSubmit={handleSubmit(onSubmit)}>

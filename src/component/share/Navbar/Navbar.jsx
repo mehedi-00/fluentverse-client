@@ -8,11 +8,12 @@ import { useAuth } from '../../../hooks/useAuth';
 import { useEffect, useState } from 'react';
 const Navbar = () => {
     const { user, logOut } = useAuth();
-    const [theme, setTheme] = useState(localStorage.getItem("theme") ?localStorage.getItem("theme"): 'light');
+    const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : 'light');
+    
     const menuItem = <>
-         <NavLink to='/' className={({ isActive }) => (isActive ? "navActive" : "default")}>Home</NavLink>
-         <NavLink to='/instructors' className={({ isActive }) => (isActive ? "navActive" : "default")}>Instructors</NavLink> 
-        <NavLink to='/classes' className={({ isActive }) => (isActive ? "navActive" : "default")}>Classes</NavLink> 
+        <NavLink to='/' className={({ isActive }) => (isActive ? "navActive" : "default")}>Home</NavLink>
+        <NavLink to='/instructors' className={({ isActive }) => (isActive ? "navActive" : "default")}>Instructors</NavLink>
+        <NavLink to='/classes' className={({ isActive }) => (isActive ? "navActive" : "default ")}>Classes</NavLink>
     </>;
 
     useEffect(() => {
@@ -22,13 +23,12 @@ const Navbar = () => {
 
     }, [theme]);
     const handleToggle = (e) => {
-            if(e.target.checked){
-                setTheme('dark');
-            }else{
-                setTheme('light');
-            }
+        if (e.target.checked) {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
     };
-    console.log(theme);
 
     return (
         <Container>
@@ -36,7 +36,7 @@ const Navbar = () => {
                 <div className="navbar-start">
                     <Menu>
                         <Menu.Button className='lg:hidden w-8 h-8 mr-5'>
-                            <BiAlignLeft className='text-2xl'/>
+                            <BiAlignLeft className='text-2xl' />
                         </Menu.Button>
                         <Menu.Items className='shadow-md shadow-slate-600 list-none absolute flex flex-col bg-white px-2 w-[200px] py-4 top-12 left-10 z-50 rounded-lg'>
                             {
@@ -55,17 +55,17 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                        user ? <UserProfile img={user?.photoURL} logout={logOut} /> :
+                        user ? <UserProfile img={user?.photoURL} logout={logOut} email={user?.email} /> :
                             <Link to='/login' className='myBtn px-3 py-1'>Login</Link>
                     }
 
                     <label className="swap swap-rotate">
 
                         {/* this hidden checkbox controls the state */}
-                        <input 
-                        type="checkbox"
-                         onChange={handleToggle} 
-                         checked={theme === 'light'? false: true}
+                        <input
+                            type="checkbox"
+                            onChange={handleToggle}
+                            checked={theme === 'light' ? false : true}
                         />
 
                         {/* sun icon */}

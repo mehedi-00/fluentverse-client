@@ -4,6 +4,8 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAllClass from "../../hooks/useAllClass";
+import DataLoader from "../../component/share/DataLoader";
+import { Helmet } from "react-helmet";
 
 const SelectedClass = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -11,7 +13,7 @@ const SelectedClass = () => {
     const [allClasses] = useAllClass();
     const naviagte = useNavigate()
     if (classLoading) {
-        return 'loadding ....';
+        return <DataLoader/>;
     }
     const handleDelete = id => {
         Swal.fire({
@@ -46,6 +48,9 @@ const SelectedClass = () => {
 
     return (
         <div>
+             <Helmet>
+            <title>Fluent Verse | Selected Class</title>
+            </Helmet>
 
             {
                 selectClass.length === 0 ? <div>

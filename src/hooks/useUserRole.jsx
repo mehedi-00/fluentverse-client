@@ -5,11 +5,11 @@ const useUserRole = () => {
     const { user } = useAuth();
     const { data: userRole, isLoading: userLoading } = useQuery({
         queryKey: ['userRole', user?.email],
-        enabled:!!user?.email && !!localStorage.getItem("access-token"),
+        enabled:!!user?.email ,
         queryFn: async () => {
-            const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/user/role/${user?.email}`);
-            console.log(res);
+            const res = await axios.get(`https://fluent-verse-server.vercel.app/user/role/${user?.email}`);
             return res.data?.role || 'student';
+
         }
     });
     return [userLoading, userRole];

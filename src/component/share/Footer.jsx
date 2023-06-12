@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import Container from './Container';
 import Logo from './Logo';
-
+import { FaFacebook, FaGooglePlus, FaInstagram } from "react-icons/fa";
 const Footer = () => {
     return (
         <div>
@@ -8,23 +9,32 @@ const Footer = () => {
 
                 <footer
                     className="bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left mt-10">
-                   
+
 
 
                     <div className="mx-6 py-10 text-center md:text-left">
-                        <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+                        <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-center">
                             <div className="">
                                 <h6
                                     className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
-                                    <Logo/>
+                                    <Logo />
                                 </h6>
                                 <p>
-                                    Here you can use rows and columns to organize your footer
-                                    content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                                    elit.
+                                    The language class course exceeded my expectations. The instructor made learning fun and interactive. The small class size allowed for
                                 </p>
+                                <ul className='mt-5 flex space-x-4'>
+                                    <li>
+                                        <FaFacebook size={30}/>
+                                    </li>
+                                    <li>
+                                        <FaInstagram size={30}/>
+                                    </li>
+                                    <li>
+                                        <FaGooglePlus size={30}/>
+                                    </li>
+                                </ul>
                             </div>
-                            <div className="">
+                            {/* <div className="">
                                 <h6
                                     className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
                                     Products
@@ -49,32 +59,21 @@ const Footer = () => {
                                     >Laravel</a
                                     >
                                 </p>
-                            </div>
+                            </div> */}
                             <div className="">
                                 <h6
                                     className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
                                     Useful links
                                 </h6>
                                 <p className="mb-4">
-                                    <a href="#!" className="text-neutral-600 dark:text-neutral-200"
-                                    >Pricing</a
-                                    >
+                                    <Link to='/' className="text-neutral-600 dark:text-neutral-200">Home</Link>
                                 </p>
                                 <p className="mb-4">
-                                    <a href="#!" className="text-neutral-600 dark:text-neutral-200"
-                                    >Settings</a
-                                    >
+                                <Link to='/classes' className="text-neutral-600 dark:text-neutral-200">Classes</Link>
                                 </p>
                                 <p className="mb-4">
-                                    <a href="#!" className="text-neutral-600 dark:text-neutral-200"
-                                    >Orders</a
-                                    >
-                                </p>
-                                <p>
-                                    <a href="#!" className="text-neutral-600 dark:text-neutral-200"
-                                    >Help</a
-                                    >
-                                </p>
+                                <Link to='/instructors' className="text-neutral-600 dark:text-neutral-200">Instructor</Link>
+                                </p>                             
                             </div>
                             <div>
                                 <h6
@@ -141,7 +140,7 @@ const Footer = () => {
                         <span>© 2023 Copyright:</span>
                         <span
                             className="font-semibold text-neutral-600 dark:text-neutral-400"
-                            
+
                         >Md Mehedi Hasan</span
                         >
                     </div>

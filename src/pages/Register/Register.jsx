@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useAuth } from '../../hooks/useAuth';
 import { addUser } from '../../api/userApi';
 
@@ -9,12 +9,15 @@ import { addUser } from '../../api/userApi';
 const Register = () => {
     const { createUser, updateUserProfile, googleSignIn } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
+    const [showCPassword, setShowCPassword] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [error, setError] = useState('');
 
     const navigate = useNavigate();
-    const onSubmit = data => {
-        console.log(data);
+    const onSubmit = data => { 
+       if(data.password !== data.confirmpassword){
+       return setError('Password not matches');
+       }
         createUser(data.email, data.password)
             .then(() => {
 
@@ -55,6 +58,9 @@ const Register = () => {
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
+    };
+    const handleShowCPassword = () => {
+        setShowCPassword(!showCPassword);
     };
 
     return (
@@ -108,7 +114,30 @@ const Register = () => {
                                             {errors.password?.type === 'minLength' && <span className='text-red-600'>This password must be 6 character or more than</span>}
                                             {errors.password?.type === 'pattern' && <span className='text-red-600'>Your password need a capital letter and spacial characters</span>}
                                         </div>
+                                        
+                                        <div className="py-2" >
+                                            <span className="px-1 text-sm text-gray-600">Confirm Password</span>
+                                            <div className="relative">
 
+                                                <input
+                                                 type={showCPassword ? 'text' : 'password'} 
+                                                  {...register("confirmpassword", {
+                                                    required: true
+                                                })} 
+                                                className="text-md block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none" />
+
+
+                                                <div className="absolute inset-y-5  right-0 pr-3 flex items-center text-sm leading-5">
+                                                    <span className='cursor-pointer' onClick={handleShowCPassword}>
+                                                        {showCPassword ? <FaRegEyeSlash /> : <FaEye />}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            {errors.Cpassword?.type === 'required' && <span className='text-red-600'>This field is required</span>}
+                                           
+                                        </div>
+                                        
+                                        
 
                                     </div>
 

@@ -13,7 +13,7 @@ const TopInstructor = () => {
         queryKey: ['topInstrrctors'],
         enabled: !loading,
         queryFn: async () => {
-            const res = await axios(`${import.meta.env.VITE_SERVER_URL}/popular-instructors`)
+            const res = await axios(`https://fluent-verse-server.vercel.app/popular-instructors`)
             return res.data;
         }
 

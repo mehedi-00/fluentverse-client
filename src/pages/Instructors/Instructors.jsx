@@ -4,8 +4,9 @@ import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 import Container from '../../component/share/Container';
 import { motion } from "framer-motion";
-import Loader from "../../component/share/Loader";
 import SectionHeading from "../../component/share/SectionHeading";
+import { Helmet } from "react-helmet";
+import DataLoader from "../../component/share/DataLoader";
 const Instructors = () => {
   const { loading } = useAuth();
   const { data: instrrctors = [], isLoading: instructorLoading } = useQuery({
@@ -17,11 +18,14 @@ const Instructors = () => {
     }
 
   });
-  if (loading || instructorLoading) {
-    return <Loader />;
+  if (instructorLoading) {
+    return <DataLoader />;
   }
   return (
     <div className="my-10 md:my-20">
+       <Helmet>
+            <title>Fluent Verse | All Instructor</title>
+            </Helmet>
       <Container>
           <SectionHeading title='All Instructor'/>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4 gap-8 ">

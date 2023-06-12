@@ -12,10 +12,6 @@
     color: white;
 }
 
-
-
-
-
 tr td:nth-last-child(),
 tr th:nth-last-child() {
     border-radius: 0 .625rem .625rem 0;
@@ -29,10 +25,10 @@ tr th:nth-child(1) {
     @apply bg-primary text-white rounded-md cursor-pointer capitalize font-bold shadow-zinc-300 text-center
 }
 .navActive{
-    @apply text-primary mx-5 font-medium text-sm md:text-xl
+    @apply text-lime-500 top-1 mx-5 font-medium text-sm md:text-xl
 }
 .default{
-    @apply text-slate-900 mx-5 font-medium text-sm md:text-xl
+    @apply text-primary mx-5 font-medium text-sm md:text-xl
 }
 .shapedividers_com-7{
     overflow:hidden;
@@ -85,14 +81,8 @@ tr th:nth-child(1) {
     }
     
     }
-    @media  (max-width:600px) {
-        .dashboard-drowar{
-            transform: translateX(-100vw);
-            -webkit-transform: translateX(-100vw);
-            -moz-transform: translateX(-100vw);
-            -ms-transform: translateX(-100vw);
-            -o-transform: translateX(-100vw);
-}
-    }
+    .drawer-side a {
+        background-color: transparent;
+      }
      
      

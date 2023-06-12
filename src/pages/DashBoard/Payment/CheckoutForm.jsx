@@ -101,7 +101,7 @@ const CheckoutForm = ({ currentClass, refetch }) => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='max-w-screen-md mx-auto shadow-xl mt-[200px] p-8'>
                 <CardElement
                     options={{
                         style: {

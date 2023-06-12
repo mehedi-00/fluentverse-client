@@ -3,11 +3,12 @@ import Sidebar from "../component/SideBar/Sidebar";
 
 
 import { BiAlignLeft } from "react-icons/bi";
+import Container from "../component/share/Container";
 const DashBoard = () => {
     return (
 
 
-        <>
+        <Container>
             <div className="drawer drawer-mobile lg:drawer-open ">
                 
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -28,7 +29,7 @@ const DashBoard = () => {
 
                 </div>
             </div>
-        </>
+        </Container>
     );
 };
 

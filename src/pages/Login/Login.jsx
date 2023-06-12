@@ -22,9 +22,8 @@ const Login = () => {
         console.log(data);
         setError('')
         signInEmailPassword(data.email, data.password)
-            .then(result => {
-                const createdUser = result.user;
-                console.log(createdUser);
+            .then(() => {
+                
                 reset();
                 return navigate(from, { replace: true });
             })
@@ -37,7 +36,7 @@ const Login = () => {
         googleSignIn()
             .then(result => {
                 const loggedInUser = result.user;
-                console.log(loggedInUser);
+                // console.log(loggedInUser);
                 addUser(loggedInUser.displayName, loggedInUser.email, loggedInUser.photoURL)
                     .then(() => {
                         navigate('/');

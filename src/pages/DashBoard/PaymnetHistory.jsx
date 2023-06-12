@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import DataLoader from "../../component/share/DataLoader";
+import { Helmet } from "react-helmet";
 
 
 
@@ -17,12 +19,14 @@ const PaymnetHistory = () => {
         }
     });
     if (paymnetLoading) {
-        return 'loading...';
+        return <DataLoader/>;
     }
     console.log(paymentClass);
     return (
         <div>
-
+             <Helmet>
+            <title>Fluent Verse | Payment History</title>
+            </Helmet>
             {
                 paymentClass.length <= 0 ? <div>
                     please add Class

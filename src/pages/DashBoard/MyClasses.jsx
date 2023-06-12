@@ -2,6 +2,7 @@ import useClasses from "../../hooks/useClasses";
 import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { FaTimes } from "react-icons/fa";
+import DataLoader from "../../component/share/DataLoader";
 
 const MyClasses = () => {
     const [, myClasses, classLoading] = useClasses();
@@ -12,7 +13,7 @@ const MyClasses = () => {
         setIsOpen(true);
     }
     if (classLoading) {
-        return 'loadding ....';
+        return <DataLoader/>;
     }
 
     return (
@@ -21,20 +22,22 @@ const MyClasses = () => {
             {
                 myClasses.length === 0 ? <div>
                     please add Class
-                </div> : <div className="flex items-center justify-center min-h-screen bg-gray-100">
+                </div> : <div className=" mx-5">
+                <h2 className="text-3xl text-center my-3 mb-8"> My Class</h2>
+
                     <div className="col-span-12">
                         <div className="overflow-auto lg:overflow-visible ">
                             <table className="table text-gray-400 border-separate space-y-6 text-sm">
-                                <thead className="bg-gray-800 text-gray-500">
+                                <thead className="bg-gray-300 text-gray-500">
                                     <tr>
-                                        <th className="p-3">#</th>
-                                        <th className="p-3">Image</th>
-                                        <th className="p-3">Class Name</th>
-                                        <th className="p-3 text-center">Total Enrolled</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">#</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">Image</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">Class Name</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">Total Enrolled</th>
 
-                                        <th className="p-3 text-center">Status</th>
-                                        <th className="p-3 text-center">Feedback</th>
-                                        <th className="p-3 text-center">Action</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">Status</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">Feedback</th>
+                                        <th scope="col" className="px-2 md:px-6 py-4">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import DataLoader from "../../component/share/DataLoader";
+import { Helmet } from "react-helmet";
 
 
 
@@ -17,12 +19,14 @@ const EnrolledClass = () => {
         }
     });
     if (enrolleLoading) {
-        return 'loading...';
+        return <DataLoader/>;
     }
     return (
        
         <div>
-
+            <Helmet>
+            <title>Fluent Verse | Enrolled Class</title>
+            </Helmet>
             {
                 enrrolledClasses.length <= 0 ? <div>
                     please add Class

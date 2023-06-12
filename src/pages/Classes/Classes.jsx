@@ -5,6 +5,7 @@ import Container from "../../component/share/Container";
 import SingleClass from "../../component/Classes/SingleClass";
 import Loader from "../../component/share/Loader";
 import SectionHeading from "../../component/share/SectionHeading";
+import { Helmet } from "react-helmet";
 
 
 
@@ -24,6 +25,9 @@ const Classes = () => {
 
     return (
         <div className="my-20">
+             <Helmet>
+            <title>Fluent Verse | All Class</title>
+            </Helmet>
            <Container>
                 <SectionHeading title='All Classes'/>
                {approvedClasses.length === 0? <div>Kono data Nai</div>:

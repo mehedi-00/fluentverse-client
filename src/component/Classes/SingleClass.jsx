@@ -3,8 +3,10 @@ import { useAuth } from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
+import useUserRole from "../../hooks/useUserRole";
 
 const SingleClass = ({ singleClass }) => {
+  const [,userRole] = useUserRole()
   const [axiosSecure] = useAxiosSecure();
   const { user } = useAuth();
   const location = useLocation();
@@ -57,7 +59,7 @@ const SingleClass = ({ singleClass }) => {
 
 
   return (
-    <div className="relative flex  flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md  shadow-black">
+    <div className={`relative flex  flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md  shadow-black ${avilable_seats===0 && 'border-2 border-red-700 shadow-red-600'}`}>
       <div className="relative mx-4 mt-4 h-64 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
         <img
           src={image}
@@ -88,6 +90,7 @@ const SingleClass = ({ singleClass }) => {
       </div>
       <div className="p-6 pt-0 mx-auto">
         <button
+        disabled={userRole === 'admin' || userRole === 'instrtor' || avilable_seats ===0}
           onClick={handleSelect}
           className=" btn btn-primary"
         >

@@ -22,7 +22,7 @@ const Payment = () => {
     console.log(currentClass);
     return (
        
-        <div className="w-[500px] mx-20 ">
+        <div className="  max-w-screen-lg max-h-screen   ">
 
         {
             currentClass&&  <Elements stripe={stripepromise}>

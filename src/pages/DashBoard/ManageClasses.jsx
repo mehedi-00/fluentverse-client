@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { FaTimes } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const ManageClasses = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -64,6 +65,9 @@ const ManageClasses = () => {
 
     return (
         <div>
+             <Helmet>
+            <title>Fluent Verse | Manage Class</title>
+            </Helmet>
             <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
                 <Dialog.Panel className='fixed w-[70vw] max-w-screen-lg top-1/3 left-1 md:left-1/2 bg-white md:-translate-x-1/2 rounded-md shadow-xl   p-8'>
                     <Dialog.Title>Give Feedback </Dialog.Title>
@@ -114,10 +118,10 @@ const ManageClasses = () => {
                                                 <div className="flex flex-col md:flex-row  align-items-center">
                                                     <img className="rounded-full h-12 w-12  object-cover" src={item?.image} />
                                                     <div className="ml-3">
-                                                        <div className="">
+                                                        <div className="text-zinc-700">
                                                             {item?.instructor_name}
                                                         </div>
-                                                        <div className="">
+                                                        <div className="font-medium">
                                                             {item?.instructor_email}
                                                         </div>
 
@@ -129,7 +133,7 @@ const ManageClasses = () => {
 
 
                                                 <div className="ml-3">
-                                                    <div className="">
+                                                    <div className=" font-bold">
                                                         {item?.class_name
                                                         }
                                                     </div>
@@ -137,18 +141,18 @@ const ManageClasses = () => {
 
                                                 </div>
                                             </td>
-                                            <td className="p-3">
+                                            <td className="p-3 font-bold">
                                                 {
                                                     item?.avilable_seats
 
                                                 }
                                             </td>
-                                            <td className="p-3 text-end">
+                                            <td className="p-3 text-end font-bold">
                                                 ${item?.price}
                                             </td>
 
                                             <td className="p-3">
-                                                <span className="bg-green-400 text-gray-50 rounded-md px-2">
+                                                <span className="bg-green-400 text-gray-50 rounded-md px-2 ">
                                                     {
                                                         item?.status
                                                     }
@@ -156,10 +160,10 @@ const ManageClasses = () => {
                                             </td>
 
                                             <td className="p-3 ">
-                                                <button disabled={item.status !== 'pending'} onClick={()=> handleApprove(item._id)} className="btn btn-sm btn-primary mx-2">
+                                                <button disabled={item.status !== 'pending'} onClick={()=> handleApprove(item._id)} className="btn btn-sm btn-primary mx-2 ">
                                                     Approve
                                                 </button>
-                                                <button  disabled={item.status !== 'pending'} onClick={() => handleDeny(item._id)} className="btn btn-sm btn-primary mx-2 my-3 md:my-0">
+                                                <button  disabled={item.status !== 'pending'} onClick={() => handleDeny(item._id)} className="btn btn-sm btn-primary mx-2 my-3 ">
                                                     Deny
                                                 </button>
 

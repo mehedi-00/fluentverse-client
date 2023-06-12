@@ -1,6 +1,7 @@
 import useUser from "../../hooks/useUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 
 const ManageUsers = () => {
@@ -20,6 +21,9 @@ const ManageUsers = () => {
 
 
         <div className=" mt-10">
+            <Helmet>
+                <title>Fluent Verse | Manage Users</title>
+            </Helmet>
             <h2 className="text-3xl text-center"> All User</h2>
             <div className="sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">

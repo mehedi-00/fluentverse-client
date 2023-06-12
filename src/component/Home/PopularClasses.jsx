@@ -13,7 +13,7 @@ const PopularClasses = () => {
         queryKey: ['popularClass'],
         enabled: !loading,
         queryFn: async () => {
-            const res = await axios(`${import.meta.env.VITE_SERVER_URL}/popular-clsases`)
+            const res = await axios(`https://fluent-verse-server.vercel.app/popular-clsases`)
             return res.data;
         }
 
