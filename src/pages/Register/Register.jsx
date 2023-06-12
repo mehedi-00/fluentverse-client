@@ -16,9 +16,7 @@ const Register = () => {
     const onSubmit = data => {
         console.log(data);
         createUser(data.email, data.password)
-            .then(result => {
-                const createdUser = result.user;
-                console.log(createdUser);
+            .then(() => {
 
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {

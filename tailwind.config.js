@@ -6,7 +6,19 @@ export default {
   ],
  
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        josefin: ['Josefin Sans', 'sans-serif'],
+      },
+      colors: {
+        custom: {
+          'primary': '#4a6a59',
+          'secondary': '#00ff00',
+          'accent': '#0000ff',
+        },
+      }
+    },
+   
   },
   plugins: [require("daisyui")],
   daisyui: {
